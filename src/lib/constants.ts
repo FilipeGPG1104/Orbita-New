@@ -8,7 +8,7 @@
  */
 
 /**
- * Número de WhatsApp da OrbitalNew para onde os agendamentos são enviados.
+ * Número de WhatsApp da OrbitaNew para onde os agendamentos são enviados.
  * Formato: código do país + DDD + número, somente dígitos.
  * ⚠️ TROQUE pelo número real antes de publicar o site.
  */
@@ -52,4 +52,4 @@ export function getTimeSlotsForDay(date: Date): string[] {
  * spammer decidido, mas evita o caso comum de clique duplo/repetido.
  */
 export const RATE_LIMIT_MS = 3 * 60 * 1000; // 3 minutos
-export const RATE_LIMIT_STORAGE_KEY = "orbitalnew:last_booking_ts";
+export const RATE_LIMIT_STORAGE_KEY = "orbitanew:last_booking_ts";

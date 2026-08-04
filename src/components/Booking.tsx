@@ -27,7 +27,7 @@ function selectableClasses(active: boolean) {
  * Calendário de agendamento. A pessoa escolhe um dia útil e um horário
  * fixo (definidos em src/lib/constants.ts e dateUtils.ts), preenche
  * nome e WhatsApp, e ao confirmar é redirecionada para o WhatsApp da
- * OrbitalNew com uma mensagem já pronta (wa.me).
+ * OrbitaNew com uma mensagem já pronta (wa.me).
  *
  * Não existe backend: por isso o "rate limit" abaixo é só uma trava no
  * navegador da própria pessoa (via localStorage), evitando cliques
@@ -90,7 +90,7 @@ export function Booking() {
       return;
     }
 
-    const message = `Olá! Quero agendar uma reunião com a OrbitalNew.%0A%0ANome: ${encodeURIComponent(
+    const message = `Olá! Quero agendar uma reunião com a OrbitaNew.%0A%0ANome: ${encodeURIComponent(
       name
     )}%0AData: ${encodeURIComponent(formatDateLabel(selectedDay))}%0AHorário: ${encodeURIComponent(
       selectedTime

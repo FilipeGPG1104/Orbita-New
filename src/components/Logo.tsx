@@ -4,9 +4,9 @@ interface LogoProps {
   className?: string;
 }
 
-/** Ícone da marca OrbitalNew (o "N" em órbita), usado na navbar e em placeholders. */
+/** Ícone da marca OrbitaNew (o "N" em órbita), usado na navbar e em placeholders. */
 export function Logo({ className = "w-6 h-6" }: LogoProps) {
   return (
-    <img src={logoIcon} alt="OrbitalNew" className={`${className} object-contain`} />
+    <img src={logoIcon} alt="OrbitaNew" className={`${className} object-contain`} />
   );
 }

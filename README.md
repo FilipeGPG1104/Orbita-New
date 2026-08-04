@@ -1,6 +1,6 @@
-# OrbitalNew — Site institucional
+# OrbitaNew — Site institucional
 
-Landing page da OrbitalNew: React + TypeScript + Vite + Tailwind CSS.
+Landing page da OrbitaNew: React + TypeScript + Vite + Tailwind CSS.
 
 ## Como rodar
 
@@ -21,15 +21,17 @@ Os arquivos ficam em `dist/`.
 
 ## Antes de publicar, ajuste isto
 
-Tudo em **`src/lib/constants.ts`**:
+Tudo em `src/lib/constants.ts`:
 
 - `WHATSAPP_NUMBER` — hoje está com um número de exemplo. Troque pelo
-  número real da OrbitalNew (código do país + DDD + número, só dígitos).
+número real da OrbitaNew (código do país + DDD + número, só dígitos).
 - `WEEKLY_AVAILABILITY` — horários oferecidos no agendamento, por dia
-  da semana (segunda a sexta têm listas diferentes, refletindo os
-  horários em que vocês ficam ocupados).
+da semana (segunda a sexta têm listas diferentes, refletindo os
+horários em que vocês ficam ocupados).
 - `INSTAGRAM_URL` / `HERO_VIDEO_URL` — já configurados, mas fica fácil
-  de trocar se precisar.
+de trocar se precisar.
+
+
 
 ## Estrutura de pastas
 
@@ -62,6 +64,8 @@ src/
     logo-icon.png           → só o símbolo da marca (usado na navbar)
     logo-full.png            → logo completa com o nome (usada no rodapé)
 ```
+
+
 
 ## Como adicionar projetos ao portfólio
 

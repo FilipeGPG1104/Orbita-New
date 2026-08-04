@@ -16,7 +16,7 @@ export function Footer() {
     <footer className="relative border-t border-gray-200 px-6 sm:px-10 md:px-14 pt-14 pb-8">
       <div className="max-w-5xl mx-auto grid sm:grid-cols-2 gap-10 sm:gap-6">
         <div>
-          <img src={logoFull} alt="OrbitalNew" className="h-7 w-auto object-contain" />
+          <img src={logoFull} alt="OrbitaNew" className="h-7 w-auto object-contain" />
           <p className="mt-4 max-w-xs text-sm text-[#191919]/60 leading-relaxed">
             Sites que colocam seu negócio em órbita.
           </p>
@@ -55,7 +55,7 @@ export function Footer() {
 
       <div className="max-w-5xl mx-auto mt-12 pt-6 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-3">
         <span className="text-xs text-[#191919]/40">
-          © {new Date().getFullYear()} OrbitalNew. Todos os direitos reservados.
+          © {new Date().getFullYear()} OrbitaNew. Todos os direitos reservados.
         </span>
       </div>
     </footer>

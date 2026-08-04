@@ -16,7 +16,7 @@ export function Navbar() {
         <a href="#top" className="flex items-center gap-2.5">
           <Logo className="w-6 h-6" />
           <span className="font-semibold text-base tracking-tight text-[#191919] font-sans">
-            OrbitalNew
+            OrbitaNew
           </span>
         </a>
 
