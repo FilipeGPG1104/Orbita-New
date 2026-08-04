@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Rolagem suave ao clicar em links âncora (ex: nav -> #agendar) */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Respeita quem prefere menos animação no sistema operacional */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
