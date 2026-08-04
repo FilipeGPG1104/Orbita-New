@@ -26,18 +26,18 @@ export const HERO_VIDEO_URL =
  * Chave = Date.getDay() (0 = domingo, 1 = segunda, ..., 6 = sábado).
  *
  * Reflete os horários em que vocês ficam ocupados:
- * - Segunda, quarta e sexta: ocupados das 12:25 às 18:30 → livre de manhã (9h-12:25)
- * - Terça: ocupados das 13:15 às 18:30 → livre de manhã (9h-13:15)
- * - Quinta: ocupados das 12:25 às 17:45 → livre de manhã (9h-12:25) e à noite (18h-19h+)
+ * - Segunda, quarta e sexta: ocupados das 12:25 às 18:30 → livre de manhã (9h-12:25) e à noite (19h-20h, de 30 em 30 min)
+ * - Terça: ocupados das 13:15 às 18:30 → livre de manhã (9h-13:15) e à noite (19h-20h, de 30 em 30 min)
+ * - Quinta: ocupados das 12:25 às 17:45 → livre de manhã (9h-12:25) e à noite (18h, 19h-20h de 30 em 30 min)
  *
  * Para mudar um horário, edite a lista do dia correspondente abaixo.
  */
 export const WEEKLY_AVAILABILITY: Record<number, string[]> = {
-  1: ["09:00", "10:00", "11:00"], // segunda
-  2: ["09:00", "10:00", "11:00", "12:00"], // terça
-  3: ["09:00", "10:00", "11:00"], // quarta
-  4: ["09:00", "10:00", "11:00", "18:00", "19:00"], // quinta
-  5: ["09:00", "10:00", "11:00"], // sexta
+  1: ["09:00", "09:30", "10:00", "10:30", "11:00", "19:00", "19:30", "20:00"], // segunda
+  2: ["09:00", "09:30", "10:00", "10:30", "11:00", "12:00", "19:00", "19:30", "20:00"], // terça
+  3: ["09:00", "09:30", "10:00", "10:30", "11:00", "19:00", "19:30", "20:00"], // quarta
+  4: ["09:00", "09:30", "10:00", "10:30", "11:00", "18:00", "19:00", "19:30", "20:00"], // quinta
+  5: ["09:00", "09:30", "10:00", "10:30", "11:00", "19:00", "19:30", "20:00"], // sexta
 };
 
 /** Retorna os horários disponíveis para uma data específica. */
