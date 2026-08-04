@@ -8,10 +8,10 @@ const LINKS: NavLink[] = [
   { label: "Agendar", href: "#agendar" },
 ];
 
-/** Barra de navegação fixa, transparente, sobre o vídeo do hero. */
+/** Barra de navegação fixa com fundo desfocado (glass) sobre o conteúdo ao rolar. */
 export function Navbar() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/60 backdrop-blur-md border-b border-[#191919]/5">
       <div className="flex items-center justify-between px-6 sm:px-10 md:px-14 py-4 sm:py-5">
         <a href="#top" className="flex items-center gap-2.5">
           <Logo className="w-6 h-6" />
