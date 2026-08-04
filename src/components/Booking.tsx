@@ -1,4 +1,4 @@
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { Clock, MessageCircle } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
 import {
@@ -7,7 +7,7 @@ import {
   getTimeSlotsForDay,
   WHATSAPP_NUMBER,
 } from "../lib/constants";
-import { WEEKDAY_LABELS, MONTH_LABELS, formatDateLabel, getNextBusinessDays } from "../lib/dateUtils";
+import { WEEKDAY_LABELS, MONTH_LABELS, formatDateLabel, formatMonthYear, getAvailableDaysInMonth } from "../lib/dateUtils";
 
 type Status = "idle" | "blocked" | "sent";
 
@@ -35,8 +35,8 @@ function selectableClasses(active: boolean) {
  * -----------------------------------------------------------------------
  */
 export function Booking() {
-  const days = getNextBusinessDays(10);
-  const [selectedDay, setSelectedDay] = useState(days[0]);
+  const days = useMemo(() => getAvailableDaysInMonth(), []);
+  const [selectedDay, setSelectedDay] = useState<Date | null>(days[0] ?? null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -44,6 +44,18 @@ export function Booking() {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const [cooldownLeft, setCooldownLeft] = useState(0);
+
+  // Garante um dia selecionado válido quando a lista de dias muda (ex.: virada de mês).
+  useEffect(() => {
+    if (days.length === 0) {
+      setSelectedDay(null);
+      return;
+    }
+    if (!selectedDay || !days.some((d) => d.toDateString() === selectedDay.toDateString())) {
+      setSelectedDay(days[0]);
+      setSelectedTime(null);
+    }
+  }, [days, selectedDay]);
 
   // Ao carregar, verifica se já existe um cooldown ativo de uma solicitação anterior.
   useEffect(() => {
@@ -75,6 +87,10 @@ export function Booking() {
     const digits = phone.replace(/\D/g, "");
     if (digits.length < 10) {
       setErrorMsg("Digite um WhatsApp válido, com DDD.");
+      return;
+    }
+    if (!selectedDay) {
+      setErrorMsg("Escolha um dia disponível.");
       return;
     }
     if (!selectedTime) {
@@ -131,10 +147,17 @@ export function Booking() {
         </div>
 
         <div>
-          <span className="text-xs font-medium text-[#191919]/60">Escolha um dia</span>
-          <div className="mt-3 flex gap-2 overflow-x-auto pb-2 -mx-1 px-1">
+          <div className="flex items-baseline justify-between gap-4">
+            <span className="text-xs font-medium text-[#191919]/60">Escolha um dia</span>
+            {days[0] && (
+              <span className="text-xs font-medium text-[#191919]/40 capitalize">
+                {formatMonthYear(days[0])}
+              </span>
+            )}
+          </div>
+          <div className="mt-3 grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-2">
             {days.map((day) => {
-              const active = day.toDateString() === selectedDay.toDateString();
+              const active = day.toDateString() === selectedDay?.toDateString();
               return (
                 <button
                   type="button"
@@ -143,7 +166,7 @@ export function Booking() {
                     setSelectedDay(day);
                     setSelectedTime(null);
                   }}
-                  className={`shrink-0 w-16 sm:w-[72px] rounded-lg py-3 flex flex-col items-center ${selectableClasses(active)}`}
+                  className={`rounded-lg py-3 flex flex-col items-center ${selectableClasses(active)}`}
                 >
                   <span className="text-[10px] uppercase tracking-wide opacity-70">
                     {WEEKDAY_LABELS[day.getDay()]}
@@ -159,7 +182,7 @@ export function Booking() {
         <div className="mt-6">
           <span className="text-xs font-medium text-[#191919]/60">Escolha um horário</span>
           <div className="mt-3 grid grid-cols-4 sm:grid-cols-7 gap-2">
-            {getTimeSlotsForDay(selectedDay).map((t) => {
+            {(selectedDay ? getTimeSlotsForDay(selectedDay) : []).map((t) => {
               const active = t === selectedTime;
               return (
                 <button
